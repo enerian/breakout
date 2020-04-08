@@ -1,0 +1,189 @@
+ 
+
+<!doctype html>
+<html lang="es">
+  <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>   
+
+
+<!--TEXTO E IMÁGENES-->
+
+<div class="container">
+
+<h1 class="display-4 text-center p-5">¡Ya estáis dentro del laboratorio!</h1>
+<p class="lead p-2">Tenéis que conseguir llegar a la zona donde se trabaja con el virus, para ello, tendréis que hacer uso de vuestras identificaciones.
+
+ 
+</p>
+
+
+<br>
+<img src="../img/lab2.jpeg" class="img-fluid rounded mx-auto d-block p-3" alt="Responsive image">
+
+<p class="lead p-2 text-center p-2">Hora de identificarse para poder entrar. Clave de 4 letras. De mayor edad a menor edad. 
+
+</p>
+</div>
+
+<!--BOTONES-->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+	
+			<form id="solutionForm" class="mt-3" method="POST">
+
+				<div class="form-group p-2">
+			    	<input type="text" class="form-control form-control-lg mb-1 text-center" id="playerInput" name="playerSolution" placeholder="Clave">
+				</div>
+				
+				<div class="d-flex justify-content-center">
+			  		<button id="submitBtn" type="submit" class="mb-4 btn btn-outline-primary btn btn-lg">Comprobar</button>
+
+				</div>
+
+			</form>
+
+        </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+
+var $backendS = "TKWY";
+
+jQuery(document).ready(function() {
+
+  jQuery('#solutionForm').submit(function(e) {
+  	jQuery(this).removeClass('is-invalid');
+  	jQuery(this).removeClass('is-valid');
+  	jQuery('.valid-feedback').remove();
+  	jQuery('.invalid-feedback').remove();
+    e.preventDefault();
+    var $playerS = jQuery('#playerInput').val();
+
+    $playerS = $playerS.toLowerCase().replace(/[^a-z0-9\s]/gi, '');
+    $backendS = $backendS.toLowerCase();
+
+
+    if($playerS == $backendS) {
+    	jQuery('#playerInput').removeClass('is-invalid');
+
+    	jQuery('#playerInput').addClass('is-valid');
+    	jQuery('#playerInput').attr('disabled', 'true');
+    	jQuery('.form-group').append('<div class="valid-feedback">¡Correcto!</div>');
+
+    	// desactivar enter
+    	jQuery("#solutionForm").keypress(function(e) {
+		  //Enter key
+		  if (e.which == 13) {
+		    return false;
+		  }
+		});
+
+    	jQuery('#submitBtn').hide();
+    	jQuery('form').append('<div class="d-flex justify-content-center"><a id="continueBtn" target="_self" href="../5lksadp/index.html" class="btn btn-success btn-lg">Continuar</a></div>');
+
+    } else {
+
+    	jQuery('#playerInput').addClass('is-invalid');
+    	jQuery('.form-group').append('<div class="invalid-feedback">¡Wrong!</div>');
+
+    }
+
+  });
+
+
+
+});
+</script>
+
+<!--PISTAS-->
+<div class="container">
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-info btn-block btn-lg collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Pista
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+Tienes que hacer uso de las carpetas contenidas dentro del Drive que te descargaste al principio
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-info btn-block btn-lg collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Más pistas
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+Tienes que entrar en la carpeta de "Identificaciones". 
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-info btn-block btn-lg collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Aún más pistas
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+Cada archivo se corresponde con unas coordenadas que si las dibujas en un sistema cartesiano te da unas letras. Esas letras se corresponden con cada uno de las personas en las identificaciones
+      </div>
+    </div>
+  </div>
+ <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-info btn-block btn-lg collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Todavía más pistas
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+Si hacemos caso a lo que nos dicen, Elisa ha de ser la mayor, Eduardo le sigue, después viene Evelia y por último Enrique. Por lo tanto, la clave ordenada es TKWY
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
+
